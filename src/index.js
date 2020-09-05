@@ -272,6 +272,26 @@ class Quote {
 
     return wrapper;
   };
+  
+  static get pasteConfig() {
+    console.log("quote pasteConfig");
+    return {
+      tags: [ 'blockquote' ],
+    };
+  }
+
+  onPaste(event) {
+    const content = event.detail.data;
+    console.log("onPaste", event, content);
+    switch (event.type) {
+      case 'tag': {
+        this.data = {
+          text: content.innerHTML,
+          caption: ""
+        };
+      }
+    }
+  }
 
   /**
    * Toggle quote`s alignment
